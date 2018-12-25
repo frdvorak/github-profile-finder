@@ -13,17 +13,19 @@ searchUser.addEventListener('keyup', (e) => {
     const userText = e.target.value;
 
     if(userText !== ''){
-        console.log(userText);
+        //console.log(userText);
         // Make HTTP call
         github.getUser(userText)
             .then(data => {
-                console.log(data)
+                //console.log(data)
+                console.log(data.repos);
                 if(data.profile.message === 'Not Found') {
                    // Show alert
                    ui.showAlert('User not found', 'alert alert-danger');
                 } else {
                     // Show profile
                     ui.showProfile(data.profile);
+                    ui.showRepos(data.repos);
                 }
             })
     } else {
